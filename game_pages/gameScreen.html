@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrabble Game Screen</title>
+    <link rel="stylesheet" href="gameStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"> <!-- Link to use icons -->
+</head>
+<body>
+    <div class="container">
+        <div class="buttons">
+            <a href="mainMenu.html"><div id="home-btn" class="fa fa-house fa-4x button"></div></a>
+            <div id="pause" class="fa fa-pause fa-4x button"></div>
+            <div id="help" class="fa-solid fa-question fa-4x button"></div>
+
+            <div id="sound-buttons">
+                <label for="music-label" id="music-btn" class="fa fa-music fa-2x"></label>
+                <div class="slider-container" id="music-slider-container">
+                    <input type="range" id="music-slider" min="0" max="100" value="100">
+                    <span id="music-volume-value">20%</span>
+                </div>
+                
+                <label for="sound-label" id="sound-btn" class="fa fa-volume-up fa-2x"></label>
+                <div class="slider-container" id="sound-slider-container">
+                    <input type="range" id="sound-slider" min="0" max="100" value="100">
+                    <span id="sound-volume-value">20%</span>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="gameArea">
+            <div id="board"></div>
+            <div id="rack-container">
+                <button id="suffle-tiles-btn" class="fa fa-random fa-2x"></button>
+                <div id="tile-rack"></div>
+                <button id="submit-word-btn" class="fa fa-check fa-2x"></button>
+            </div>
+
+            <div id="error-message" style="display: none; color: red;"></div>
+        </div>
+
+        <div class="info-box-container">
+            <div id="info-box">
+                <div id="score-box">
+                    <div class="small-box" id="player">
+                        <b> Player 1 </b>
+                        <div id="player-turn">
+                            <div class="fa fa-star turn-indicator"></div>
+                        </div>
+                        <div id="total-score" class="score-display">Total Score: 0</div>
+                    </div>
+                    <div class="small-box" id="computer">
+                        <b> Computer </b>
+                        <div id="computer-turn">
+                            <div class="fa fa-star turn-indicator"></div>
+                        </div>
+                        <div id="computer-score" class="score-display">Total Score: 0</div>
+                    </div>
+                </div>
+                <div id="text-section">
+                    <div id="round-number"></div>
+                    <h3 id="tile-bag-title"><u>Tile Bag</u></h3>
+                    <div id="tile-bag-summary"></div>
+                    <h3 id="def-title">Definition of Last Played Word</h3>
+                    <div id="definition"></div>
+                </div>
+            </div>
+    
+            <div id="button-container">
+                <div id="change-tiles" class="fa fa-arrows-rotate fa-3x btn"></div>
+                <div id="skip-turn" class="fa fa-arrows-turn-right fa-3x btn"></div>
+                <p class="btn" id="resign">Resign<i class="fa-regular fa-flag fa-2x"></i></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="score-bubble"></div>
+
+    <div id="rulesPopup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h1>Scrabble Rules</h1>
+            <p>1. Players take turns forming words onto the board from the 7 tiles given</p>
+            <p>2. Tiles can be placed either horizontally or vertically on the board to form words</p>
+            <p>3. Tiles must connect to existing words if it's not the first turn</p>
+            <p>If it is the first turn then the word must cover the center square of the board</p>
+            <p>4. Each letter has a point value</p>
+            <p>5. There are double letters [DL], triple letter [TL], double word [DW] and triple word [TW] squares on the board</p>
+            <p>If a tile is placed on any of these squares then the point value of the letter or word can double or triple</p>
+            <p>6. The player with the most points at the end wins</p>
+            <p>7. The game ends when a player uses all their tiles and there are no more left to draw</p>
+        </div>
+    </div>
+
+    <div id="gameOverPopup" class="popup">
+        <div class="popup-content">
+          <span class="close" id="close">&times;</span>
+          <h1>Game Over</h1>
+          <div id="gameSummary">
+          </div>
+          <a href="mainMenu.html"><div id="home-btn-popup" class="fa fa-house fa-2x button"></div></a>
+        </div>
+      </div>
+
+    <script type="module" src="gameScript.js"></script>
+    <script type="module" src="soundAndOther.js"></script>
+</body>
+</html>

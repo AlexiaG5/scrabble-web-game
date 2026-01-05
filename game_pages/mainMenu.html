@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrabble Game Screen</title>
+    <link rel="stylesheet" href="mainMenuStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"> <!-- Link to use icons -->
+</head>
+<body>
+
+    <div id="left-buttons">
+        <label for="music-label" id="music-btn" class="fa fa-music fa-3x"></label>
+        <div class="slider-container" id="music-slider-container">
+            <input type="range" id="music-slider" min="0" max="100" value="100">
+            <span id="music-volume-value">20%</span>
+        </div>
+        
+        <label for="sound-label" id="sound-btn" class="fa fa-volume-up fa-3x"></label>
+        <div class="slider-container" id="sound-slider-container">
+            <input type="range" id="sound-slider" min="0" max="100" value="100">
+            <span id="sound-volume-value">20%</span>
+        </div>
+
+        <label id="user-profile" class="fa-solid fa-circle-user fa-3x">
+            <div id="profile-text">
+                <b>Username: </b><span id="username-display"></span><br>
+                <b>Email: </b><span id="email-display"></span>
+            </div>
+        </label>
+    </div>
+
+    <a href="/logout" id="logout">Logout<div class="fa fa-arrow-right-from-bracket"></div></a>
+
+    <!-- Main Menu Container -->
+    <div id="main-container">
+
+        <!-- Game Logo or Image -->
+        <img id="logo-image" src="scrabble-logo.png" alt="Game Logo">
+
+        <!-- Button Container -->
+        <div id="button-container">
+            <div class="buttons" id="help">How to Play<div class="fa fa-question fa-2x"></div></div>
+            <a href="gameScreen" class="buttons" id="play-btn">Play<div class="fa fa-play fa-2x"></div></a>
+            <div class="buttons">Continue<div class="fa fa-angle-right fa-2x"></div></div>
+        </div>
+    </div>
+
+    <div id="rulesPopup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h1>Scrabble Rules</h1>
+            <p>1. Players take turns forming words onto the board from the 7 tiles given</p>
+            <p>2. Tiles can be placed either horizontally or vertically on the board to form words</p>
+            <p>3. Tiles must connect to existing words if it's not the first turn</p>
+            <p>If it is the first turn then the word must cover the center square of the board</p>
+            <p>4. Each letter has a point value</p>
+            <p>5. There are double letters [DL], triple letter [TL], double word [DW] and triple word [TW] squares on the board</p>
+            <p>If a tile is placed on any of these squares then the point value of the letter or word can double or triple</p>
+            <p>6. The player with the most points at the end wins</p>
+            <p>7. The game ends when a player uses all their tiles and there are no more left to draw</p>
+        </div>
+    </div>
+
+    <script type="module">
+
+        import { 
+        startGameMusic
+        } from './soundAndOther.js';
+
+        startGameMusic();
+
+        // Get elements
+        const modal = document.getElementById("rulesPopup");
+        const btn = document.getElementById("help");
+        const closeBtn = document.querySelector(".close");
+
+        // Open modal when button is clicked
+        btn.addEventListener("click", function () {
+            modal.style.display = "flex"; // Show the modal
+        });
+
+        // Close the modal
+        closeBtn.addEventListener("click", function () {
+            modal.style.display = "none"; // Hide the modal
+        });
+
+        // Close modal if a user clicks outside the box
+        window.addEventListener("click", function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+
+        window.onload = () => {
+        const username = localStorage.getItem('username');
+        const email = localStorage.getItem('email');
+
+        if (username && email) {
+            // Display username and email in the UI
+            document.getElementById('username-display').textContent = username;
+            document.getElementById('email-display').textContent = email;
+        } else {
+            // If no user data, prompt the user to log in
+            console.log('No user logged in');
+            }
+        };
+
+        fetch("/userStatus")
+        .then(response => response.json())
+        .then(data => {
+            if (data.isGuest) {
+                document.getElementById("logout").innerText = "Sign Up";
+                document.getElementById("logout").onclick = () => window.location.href = "/index";
+                document.getElementById("user-profile").style.display = "none"; // Hide profile for guests
+            }
+        })
+        .catch(error => console.error("Error fetching user status:", error));
+    </script>
+
+    <script type="module" src="soundAndOther.js"></script>
+        
+</body>
+</html>

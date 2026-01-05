@@ -1,0 +1,81 @@
+body {
+    margin: 0px;
+    background-color: #e6f8fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(.7em + .8vw);
+    font-family: Verdana;
+    height: 100vh;
+}
+
+.main-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px #0000001a;
+    width: 45%;
+    text-align: center;
+    justify-content: center;
+}
+
+.auth-toggle button {
+    background-color: #4f82e8b5;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: calc(.6em + .4vw);
+}
+
+.auth-toggle button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.auth-form {
+    display: none;
+    margin-top: 20px;
+}
+
+.auth-form h2 {
+    margin-bottom: 25px;
+}
+
+.auth-form input{
+    width: 50%;
+    height: 25px;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 3px 0 0 0;
+    border: 2px solid #cccccc;
+}
+
+/* Change the register and login buttons */
+input[type="submit"] {
+    width: 120px;
+    height: 50px;
+    border-radius: 8px;
+    border-color: #878787;
+    background-color: #c5d3f0b5;
+    font-size: calc(.6em + .4vw);
+}
+  
+input[type="submit"]:hover {
+    background-color: #4f82e8b5;
+    cursor: pointer;
+    transform: scale(1.10);
+}
+
+#message{
+    margin: 10px 0 0 0;
+    color: red;
+    font-size: calc(.5em + .3vw);
+}
+
+#guest-login{
+    background-color: #02256ab5;
+    color: white;
+    font-weight: bold;
+}
