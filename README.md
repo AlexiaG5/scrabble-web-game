@@ -1,5 +1,9 @@
 # A Scrabble Computer Player Project
 
+A full-stack Scrabble web application featuring a computer player, built with Node.js, SQLite, and JavaScript. Users can play Scrabble against an AI opponent, while the backend manages game state and user data. The project demonstrates practical full-stack development skills, including game logic implementation and data management.
+
+### Prerequisites
+
 ### Prerequisites
 
 - Node.js (v14+)
@@ -36,4 +40,5 @@ If you don't want pre-existing data on the website follow these steps
 
 1. Delete the database.db file
 2. Run this command in the terminal: sqlite3 database.db < Users.sql
+
 3. Run the project as usual
